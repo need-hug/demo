@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Thymeleaf</title>
+</head>
+<body>
+<div>
+    <span>访问 Model：</span> userName: <span th:text="${user.getUserName()}">userName</span></span>
+    password: <span th:text="${user.getPassword()}">password</span>
+    <br/>
+    <a href="../index.html" th:if="${user.getUserName()} ne null">静态页面</a><br/>
+    <a href="../demo/thymeleaf/index" th:if="${user.getUserName()} eq null" >后台接口</a>
+</div>
+<div>
+    <span>访问列表</span>
+    <table>
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>密码</th>
+            <th>年龄</th>
+            <th>学历</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getUserName()}">userName</td>
+            <td th:text="${user.getPassword()}">password</td>
+            <td th:text="${user.getAge()}">Age</td>
+            <td th:text="${user.getEdu()}">Edu</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
