@@ -4,9 +4,13 @@ import com.soft.demo.exception.BizException;
 import com.soft.demo.jpa.entity.User;
 import com.soft.demo.jpa.repository.UserRepository;
 import com.soft.demo.jpa.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -41,5 +45,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public Page<User> findAll(Pageable page) {
+        return userRepository.findAll(page);
     }
 }

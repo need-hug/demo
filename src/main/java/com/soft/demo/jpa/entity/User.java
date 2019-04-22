@@ -1,5 +1,7 @@
 package com.soft.demo.jpa.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -13,6 +15,9 @@ import java.util.Date;
 @Table(name = "user")
 public class User implements java.io.Serializable {
 
+    public enum Enable {
+        Y,N
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -37,13 +42,24 @@ public class User implements java.io.Serializable {
     /**
      * 性别
      */
+    @Enumerated(EnumType.STRING)  // Enum存入数据库默认为int 设置为以字符串方式存入
     @Column(name = "sex")
     private Sex sex;
+
+    @Transient // 忽略该属性与数据库中字段的映射关系
+    private String deptName;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "enable")
+    private Enable enable;
 
     /**
      * 创建时间
      */
+    @Temporal(TemporalType.TIMESTAMP) // 时间注解
     @Column(name = "create_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 设置时间格式
     private Date createDate;
 
     public Integer getId() {
@@ -92,5 +108,35 @@ public class User implements java.io.Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public Enable getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Enable enable) {
+        this.enable = enable;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", deptName='" + deptName + '\'' +
+                ", enable=" + enable +
+                ", createDate=" + createDate +
+                '}';
     }
 }
