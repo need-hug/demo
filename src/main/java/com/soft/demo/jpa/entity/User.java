@@ -62,6 +62,15 @@ public class User implements java.io.Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 设置时间格式
     private Date createDate;
 
+    public User() {
+    }
+
+    public User(@NotNull String userName, @NotNull String password, Integer age) {
+        this.userName = userName;
+        this.password = password;
+        this.age = age;
+    }
+
     public Integer getId() {
         return id;
     }

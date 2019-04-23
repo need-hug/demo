@@ -1,8 +1,6 @@
 package com.soft.demo.test;
 
-import com.soft.demo.constans.Constans;
-
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * @Auther: lps
@@ -31,11 +29,6 @@ public class Main {
         jdk1_8();
 
         jdk1_8PrintUneven();
-//        System.out.println("args = [" + (1 << 30) + "]");
-//        System.out.println(Constans.getTest());
-//        for (int i = 1; i < 100; i++) {
-//            System.out.println("\tn:" + tableSizeFor(i));
-//        }
 
     }
 
