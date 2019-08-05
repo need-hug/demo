@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.Optional;
 
 /**
@@ -58,6 +60,9 @@ public class UserController {
     public MsgObj list(Integer pageNumber, Integer pageSize) {
         Pageable page = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Order.desc("createDate")));
         Page<User> users = userService.findAll(page);
+
         return new MsgObj(users);
     }
+
+
 }

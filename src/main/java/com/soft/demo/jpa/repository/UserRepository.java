@@ -17,4 +17,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     Long countByUserName(String userName);
 
+    User findUserByUserNameAndEnable(String userName, User.Enable enable);
+
+    @Query(value = "select u from User u where userName = user.userName")
+    User findUser(User user);
+
+
 }
